@@ -1,0 +1,120 @@
+.container-footer{
+    background: linear-gradient(180deg, #2d2d2d 0%, #1a1a1a 100%);
+    width: 100vw;
+    min-height: 320px;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    color: #e0e0e0;
+}
+
+    .center-container-footer{
+        width: 100%;
+        max-width: 1200px;
+        padding: 15px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+    }
+
+        .descricao-footer{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+        }
+
+        
+        .links-rapidos{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-self: center;
+            align-items: start;
+        }
+
+            .links-rapidos a{
+                color: #e0e0e0;
+                text-decoration: none;
+            }
+
+        .contato-footer{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            /* margin: 24px 0; */
+            /* background-color: #b0b0b0; */
+        }
+
+        .contato-footer-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contato-footer-item .icon {
+            width: 20px;
+            height: 20px;
+            color: #556B2F;
+        }
+
+        .contato-footer-item:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+
+
+@media (max-width: 900px){
+
+    .center-container-footer{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .descricao-footer{
+        grid-column: span 2;
+        text-align: center;
+        align-items: center;
+        max-width: 80%;
+        /* background-color: #556B2F; */
+         justify-self: center;
+    }
+
+}
+
+
+@media (max-width: 620px){
+
+    .center-container-footer{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .descricao-footer,
+    .links-rapidos,
+    .contato-footer{
+        align-items: center;
+        justify-self: center;
+    }
+
+    .links-rapidos{
+        gap: 18px;
+    }
+
+    /* .contato-footer{
+        margin: 0;
+    } */
+
+}
+
+
+@media (max-width: 500px){
+    .links-rapidos{
+        display: none;
+    }
+}

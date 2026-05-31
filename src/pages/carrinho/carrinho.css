@@ -1,0 +1,399 @@
+.dashboard-carrinho {
+    padding: 40px;
+    background: #f5f5f5;
+    min-height: 100vh;
+}
+
+.container-center-carrinho {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ESQUERDA */
+.container-carrinho-produtos {
+    flex: 2;
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+
+.carrinho_vazio {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.carrinho_vazio p {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: #999;
+}
+
+.carrinho_vazio span {
+  font-size: 0.95rem;
+  color: #aaa;
+}
+
+.titulo-carrinho h1 {
+    margin-bottom: 20px;
+}
+
+/* ITEM */
+.item-carrinho {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item-carrinho img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+    .container-img-selecionada input{
+        justify-self: start;
+    }
+
+    .item_checkbox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #25d366;
+        flex-shrink: 0;
+        margin-top: 4px;
+    }
+
+
+.info-item {
+    flex: 1;
+}
+
+.info-item h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.quantidade {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantidade button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #eee;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.remover {
+    cursor: pointer;
+    color: #999;
+    font-size: 18px;
+}
+
+/* DIREITA */
+.container-carrinho-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carrinho-info {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.carrinho-info h2 {
+    margin-bottom: 20px;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.total {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.btn-finalizar {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #25D366;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-finalizar:hover {
+    opacity: 0.9;
+}
+
+/* ========== MÉTODOS DE PAGAMENTO ========== */
+.metodos_pagamento {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+    .metodos_pagamento h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 20px 0;
+    }
+
+        .pagamento_destaque {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #bae6fd;
+        }
+
+        .pagamento_destaque img {
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .pagamento_destaque p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #0369a1;
+            line-height: 1.4;
+        }
+
+        .pagamento_destaque strong {
+            color: #0c4a6e;
+            font-weight: 700;
+        }
+
+        .pagamento_secao {
+            margin-bottom: 20px;
+        }
+
+        .pagamento_secao:last-child {
+            margin-bottom: 0;
+        }
+
+        .pagamento_secao h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #444;
+            margin: 0 0 12px 0;
+        }
+
+            .bandeiras {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .bandeiras img {
+                height: 34px;
+                object-fit: contain;
+                background: white;
+                padding: 6px;
+                border-radius: 6px;
+                border: 1px solid #e5e5e5;
+                transition: all 0.2s ease;
+            }
+
+            .bandeiras img:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .img_pix,
+                .img_boleto {
+                height: 32px;
+                object-fit: contain;
+                background: white;
+                padding: 8px;
+                border-radius: 6px;
+                border: 1px solid #e5e5e5;
+                }
+
+
+
+
+/* ================= RESPONSIVIDADE ================= */
+
+@media (max-width: 1024px){
+
+    .container-center-carrinho{
+        flex-direction: column;
+    }
+
+    .container-carrinho-info{
+        width: 100%;
+    }
+
+}
+
+
+/* TABLET */
+@media (max-width: 768px){
+
+    .dashboard-carrinho{
+        padding: 20px;
+    }
+
+    .container-carrinho-produtos,
+    .carrinho-info,
+    .metodos_pagamento{
+        padding: 18px;
+    }
+
+    .item-carrinho{
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .item-carrinho img{
+        width: 70px;
+        height: 70px;
+    }
+
+    .info-item h3{
+        font-size: 15px;
+    }
+
+    .info-item p{
+        font-size: 14px;
+    }
+
+    .quantidade{
+        margin-top: 10px;
+    }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 600px){
+
+    .dashboard-carrinho{
+        padding: 12px;
+    }
+
+    .titulo-carrinho h1{
+        font-size: 1.5rem;
+    }
+
+    .item-carrinho img{
+        width: 100px;
+        height: 100px;
+    }
+
+    .info-item{
+        width: 100%;
+    }
+
+    .quantidade{
+        justify-content: center;
+    }
+
+    .remover{
+        position: absolute;
+        top: 10px;
+        right: 0;
+    }
+
+    .linha{
+        font-size: 14px;
+    }
+
+    .total{
+        font-size: 16px;
+    }
+
+    .btn-finalizar{
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .pagamento_destaque{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pagamento_destaque img{
+        height: 28px;
+    }
+
+    .bandeiras{
+        justify-content: center;
+    }
+
+    .bandeiras img{
+        height: 30px;
+    }
+
+}
+
+
+/* CELULARES MUITO PEQUENOS */
+@media (max-width: 440px){
+
+    .container-carrinho-produtos,
+    .carrinho-info,
+    .metodos_pagamento{
+        padding: 14px;
+    }
+
+    .remover{
+        display: none;
+    }
+
+    .item-carrinho{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .quantidade{
+        grid-column: 2;
+        justify-self: center;
+    }
+
+    .item-carrinho img{
+        width: 85px;
+        height: 85px;
+    }
+
+    .quantidade button{
+        width: 28px;
+        height: 28px;
+    }
+
+    .btn-finalizar{
+        font-size: 14px;
+    }
+
+}

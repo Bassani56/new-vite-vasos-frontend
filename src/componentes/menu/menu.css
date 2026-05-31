@@ -1,0 +1,305 @@
+.container-header{
+    height: 100px;
+    background-color: #F4EEE8;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    left: 0;
+}
+
+.center-container-header{
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+}
+
+.logo img{
+    width: 180px;
+}
+
+/* ========================= */
+/* NAV */
+/* ========================= */
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* TODOS ITENS DO MENU */
+.nav-links a,
+.btn-contato{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    text-decoration: none;
+
+    border: none;
+    background: none;
+    padding: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    color: #2d2d2d;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+/* EFEITO LINHA */
+.nav-links a::after,
+.btn-contato::after{
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+    height: 2px;
+
+    background-color: #556B2F;
+
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.btn-contato:hover{
+    color: #85a350;
+}
+
+.nav-links a:hover::after,
+.btn-contato:hover::after{
+    width: 100%;
+}
+
+/* ========================= */
+/* BOTÃO HAMBURGUER */
+/* ========================= */
+
+.menu-toggle{
+    display: none;
+
+    border: none;
+    background: none;
+
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* ========================= */
+/* CONTATO */
+/* ========================= */
+
+.nav-item-contato{
+    position: relative;
+}
+
+.btn-contato{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* SETA */
+.arrow-icon{
+    width: 18px;
+    height: 18px;
+
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon.rotated{
+    transform: rotate(180deg);
+}
+
+.contato-menu{
+    position: absolute;
+    top: 40px;
+    right: 0;
+
+    background: white;
+    border-radius: 10px;
+
+    min-width: 180px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    padding: 10px;
+    gap: 8px;
+}
+
+.contato-menu.active{
+    display: flex;
+}
+
+.contato-menu a{
+    padding: 12px 15px;
+}
+
+.contato-menu a::after{
+    display: none;
+}
+
+.contato_item {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    background-color: #fafafa;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+.contato_item .icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+
+    color: #80a342;
+
+    transition: transform 0.3s ease;
+}
+
+.contato_item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2d2d2d;
+}
+
+.contato_item:hover {
+    background-color: #383232;
+    transform: translateX(4px);
+}
+
+.contato_item:hover .icon {
+    color: #fffffe;
+    transform: scale(1.2);
+}
+
+.contato_item:hover span {
+    color: #fdfff9;
+}
+
+/* ========================= */
+/* CARRINHO */
+/* ========================= */
+
+.cart{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart img{
+    width: 28px;
+}
+
+.mobile-cart{
+    display: none;
+}
+
+/* ========================= */
+/* OVERLAY */
+/* ========================= */
+
+.menu-overlay{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.4);
+    z-index: 998;
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 768px){
+
+    .menu-toggle{
+        display: block;
+        z-index: 1001;
+    }
+
+    .desktop-cart{
+        display: none;
+    }
+
+    .mobile-cart{
+        display: flex;
+    }
+
+    .nav-links{
+        position: fixed;
+
+        top: 0;
+        right: -100%;
+
+        width: 280px;
+        height: 100vh;
+
+        background: white;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 100px 30px;
+        gap: 25px;
+
+        transition: 0.3s;
+
+        z-index: 999;
+    }
+
+    .nav-links.active{
+        right: 0;
+    }
+
+    .nav-links a,
+    .btn-contato{
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .contato-menu{
+        position: static;
+
+        width: 100%;
+
+        box-shadow: none;
+
+        border: 1px solid #eee;
+
+        margin-top: 10px;
+    }
+}

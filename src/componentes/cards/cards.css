@@ -1,0 +1,73 @@
+.card {
+    background-color: #fff;
+    display: grid;
+    grid-template-rows: minmax(150px, auto) 1fr;
+    border-radius: 15px;
+    border: 0.5px solid #ddd;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s ease;
+    scroll-snap-align: start;
+    min-width: 0;
+}
+
+
+/* efeito hover */
+.card:hover {
+    transform: translateY(-1.8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* container da imagem */
+.card img {
+    width: 80%;
+    height: 190px;
+    object-fit: contain; /* 👈 mantém proporção */
+    padding: 10px;
+    max-height: 220px;
+    justify-self: center;
+    align-self: center;
+}
+
+/* descrição */
+.descricao {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    text-align: start;
+}
+
+/* título */
+.descricao h3 {
+    font-size: clamp(18px, 2.8vw, 19px);
+    margin: 0;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* limita linhas */
+    -webkit-box-orient: vertical;
+}
+
+/* texto */
+.descricao p {
+    margin: 0;
+    font-size: clamp(16px, 2.5vw, 18px);
+    font: inter, sans-serif;
+    color: #15ac15;
+
+}
+
+@media (max-width: 520px) {
+    .card img {
+        height: 160px;
+        width: 86%;
+    }
+
+    .descricao {
+        padding: 10px;
+    }
+}
+

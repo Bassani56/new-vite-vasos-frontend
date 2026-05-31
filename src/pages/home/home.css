@@ -1,0 +1,240 @@
+/* ─── Design tokens ──────────────────────────────────────────────── */
+:root {
+    --cream:        #f7f3ee;
+    --cream-mid:    #ede7de;
+    --stone-light:  #d9cfc4;
+    --stone:        #b0a498;
+    --bark:         #71685e;
+    --soil:         #4a3f36;
+    --ink:          #1e1812;
+    --accent:       #8c5e3c;
+    --accent-warm:  #c4896a;
+    --white:        #ffffff;
+
+    --font-display: 'Playfair Display', 'Georgia', serif;
+    --font-body:    'Poppins', sans-serif;
+
+    --radius-sm:    6px;
+    --radius-md:    12px;
+    --radius-lg:    20px;
+
+    --shadow-soft:  0 2px 16px 0 rgba(74, 63, 54, 0.08);
+    --shadow-card:  0 4px 24px 0 rgba(74, 63, 54, 0.12);
+    --shadow-hover: 0 12px 40px 0 rgba(74, 63, 54, 0.18);
+
+    --transition:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Page shell ─────────────────────────────────────────────────── */
+.dashboard-home {
+    min-height: 100vh;
+    background-color: var(--cream);
+    background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(196, 137, 106, 0.12) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='0.8' fill='%23b0a498' opacity='0.25'/%3E%3C/svg%3E");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+/* ─── Hero section ───────────────────────────────────────────────── */
+.apresentacao-produtos {
+    width: 100%;
+    max-width: 1140px;
+    margin-top: 128px;
+    padding: 0 24px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+}
+
+.apresentacao-produtos::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-warm) 0%, var(--stone-light) 40%, transparent 100%);
+}
+
+/* ─── Text block ─────────────────────────────────────────────────── */
+.apresentacao-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeSlideUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.label-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.apresentacao-texto h1 {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.apresentacao-texto p {
+    color: var(--bark);
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 400px;
+}
+
+/* ─── Category select ────────────────────────────────────────────── */
+.categoria-select {
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: fadeSlideUp 0.7s 0.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.categoria-select > span {
+    color: var(--bark);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.categoria-select select {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 44px 0 16px;
+    border: 1.5px solid var(--stone-light);
+    border-radius: var(--radius-md);
+    background-color: var(--white);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.categoria-select select:hover {
+    border-color: var(--accent-warm);
+}
+
+.categoria-select select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(140, 94, 60, 0.12);
+}
+
+.select-chevron {
+    position: absolute;
+    right: 14px;
+    pointer-events: none;
+    color: var(--bark);
+    transition: transform var(--transition);
+}
+
+.select-wrapper:has(select:focus) .select-chevron {
+    transform: rotate(180deg);
+}
+
+/* ─── Product grid ───────────────────────────────────────────────── */
+.container-produtos {
+    width: 100%;
+    max-width: 1140px;
+    padding: 0 24px 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+/* Staggered entrance animation for each card */
+.card-wrapper {
+    animation: fadeSlideUp 0.55s var(--card-delay, 0ms) cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ─── Empty state ────────────────────────────────────────────────── */
+.sem-produtos {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 80px 0;
+    color: var(--stone);
+    animation: fadeSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.sem-produtos p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--bark);
+    margin: 0;
+}
+
+/* ─── Keyframes ──────────────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+    .apresentacao-produtos {
+        margin-top: 100px;
+        align-items: stretch;
+        flex-direction: column;
+        padding: 0 16px 28px;
+    }
+
+    .apresentacao-produtos::after {
+        left: 16px;
+        right: 16px;
+    }
+
+    .apresentacao-texto h1 {
+        font-size: 28px;
+    }
+
+    .categoria-select {
+        min-width: 0;
+    }
+
+    .container-produtos {
+        padding: 0 16px 16px;
+        gap: 20px;
+    }
+}
