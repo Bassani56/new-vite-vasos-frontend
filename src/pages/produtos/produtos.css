@@ -450,14 +450,79 @@
     margin: 0 auto;
     padding: 2px 2px 12px;
     scroll-padding-inline: 2px;
+    scrollbar-width: none;
 }
 
 .container-related-produtos::-webkit-scrollbar {
-    height: 4px;
+    display: none; /* substitui as 2 regras antigas de scrollbar */
 }
-.container-related-produtos::-webkit-scrollbar-thumb {
-    background: #c8c8b8;
-    border-radius: 4px;
+
+
+
+/* ─── Navegação do carrossel ─── */
+.carousel-wrapper-relacionados {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-70%);
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid #e0e0d4;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #556b2f;
+    transition: background 0.15s, opacity 0.2s;
+}
+
+.carousel-nav-btn:hover {
+    background: #f4f7ed;
+}
+
+.carousel-nav-btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+}
+
+.carousel-nav-btn.prev { left: -18px; }
+.carousel-nav-btn.next { right: -18px; }
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding-top: 10px;
+}
+
+.carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: #d0d0c4;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.carousel-dot.ativo {
+    background: #556b2f;
+    transform: scale(1.35);
+}
+
+@media (max-width: 960px) {
+    .carousel-nav-btn { display: none; } /* no mobile o swipe já basta */
 }
 
 /* ─── Responsivo ─── */

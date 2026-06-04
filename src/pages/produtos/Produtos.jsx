@@ -6,7 +6,7 @@ import Cards from "../../componentes/cards/Cards.jsx";
 import { apiUrl } from "../../config/api.js";
 
 import "./produtos.css";
-import { useEffect, useState } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 // ─── Ícone SVG do carrinho ─────────────────────────────────────────────────
 function IconeCarrinho({ size = 22 }) {
@@ -299,6 +299,83 @@ function Produtos() {
         window.open(url, "_blank");
     };
 
+
+    useEffect(() => {
+        async function atualizarDescricao() {
+            try {
+                const resp = await fetch(`http://localhost:3000/products/${produto._id}/auto-description`, { 
+                    method: 'PUT' 
+                });
+                const data = await resp.json();
+                console.log('Descrição atualizada:', data.descricao);
+            } catch (error) {
+                console.error('Erro ao atualizar descrição:', error);
+            }
+        }
+
+        if (produto?._id && produto.descricao == "") {
+            atualizarDescricao();
+            console.log("produto", produto);
+        }
+        
+    }, [produto?._id]);
+
+
+
+
+
+
+    // Dentro do componente, adicione:
+    const carouselRef = useRef(null);
+    const [podeEsquerda, setPodeEsquerda] = useState(false);
+    const [podeDireita, setPodeDireita] = useState(true);
+    const [dotAtivo, setDotAtivo] = useState(0);
+
+    const atualizarNavegacao = useCallback(() => {
+        const el = carouselRef.current;
+        if (!el) return;
+        setPodeEsquerda(el.scrollLeft > 4);
+        setPodeDireita(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+        const cardW = el.querySelector(".cards-item")?.offsetWidth + 14 || 234;
+        setDotAtivo(Math.round(el.scrollLeft / cardW / Math.max(1, Math.floor(el.clientWidth / cardW))));
+    }, []);
+
+    const scrollEsquerda = () => {
+        const el = carouselRef.current;
+        if (!el) return;
+        el.scrollBy({ left: -el.clientWidth * 0.8, behavior: "smooth" });
+    };
+
+    const scrollDireita = () => {
+        const el = carouselRef.current;
+        if (!el) return;
+        el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        const el = carouselRef.current;
+        if (!el) return;
+        el.addEventListener("scroll", atualizarNavegacao, { passive: true });
+        window.addEventListener("resize", atualizarNavegacao);
+        atualizarNavegacao();
+        return () => {
+            el.removeEventListener("scroll", atualizarNavegacao);
+            window.removeEventListener("resize", atualizarNavegacao);
+        };
+    }, [relacionados, atualizarNavegacao]);
+
+    const totalPaginas = relacionados.length > 0
+        ? Math.ceil(relacionados.filter(r => String(r._id) !== String(produto._id)).length / 4)
+        : 0;
+
+
+
+
+
+
+
+
+
     return (
         <div className="dashboard-produtos">
             <header>
@@ -530,7 +607,7 @@ function Produtos() {
                 </div>
             </section>
 
-            <section>
+            {/* <section>
                 <h2>Produtos Relacionados</h2>
 
                 <div className="container-related-produtos">
@@ -549,6 +626,66 @@ function Produtos() {
                         );
                     })}
                 </div>
+            </section> */}
+
+            <section>
+                <h2>Produtos Relacionados</h2>
+
+                <div className="carousel-wrapper-relacionados">
+                    <button
+                        className="carousel-nav-btn prev"
+                        onClick={scrollEsquerda}
+                        disabled={!podeEsquerda}
+                        aria-label="Anteriores"
+                    >
+                        ‹
+                    </button>
+
+                    <div
+                        className="container-related-produtos"
+                        ref={carouselRef}
+                    >
+                        {relacionados.map((rel) => {
+                            if (String(rel._id) === String(produto._id)) return null;
+                            return (
+                                <Cards
+                                    key={rel._id}
+                                    titulo={rel.titulo_geral}
+                                    valor={rel.variantes?.[0]?.preco}
+                                    diretorio={rel.imagem_geral}
+                                    produto={rel}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    <button
+                        className="carousel-nav-btn next"
+                        onClick={scrollDireita}
+                        disabled={!podeDireita}
+                        aria-label="Próximos"
+                    >
+                        ›
+                    </button>
+                </div>
+
+                {totalPaginas > 1 && (
+                    <div className="carousel-dots">
+                        {Array.from({ length: totalPaginas }).map((_, i) => (
+                            <button
+                                key={i}
+                                className={`carousel-dot${dotAtivo === i ? " ativo" : ""}`}
+                                aria-label={`Página ${i + 1}`}
+                                onClick={() => {
+                                    const el = carouselRef.current;
+                                    if (!el) return;
+                                    const cardW = el.querySelector(".cards-item")?.offsetWidth + 14 || 234;
+                                    el.scrollTo({ left: i * cardW * Math.max(1, Math.floor(el.clientWidth / cardW)), behavior: "smooth" });
+                                }}
+                            />
+                        ))}
+                    </div>
+                )}
             </section>
 
             <footer>

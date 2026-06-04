@@ -30,7 +30,7 @@ function Footer(){
 
                 <div className='contato-footer'>
                     <h2>Contatos</h2>
-                    <a href="https://track.casadooleiroo.com.br/r/casadooleiroo14" className="contato-footer-item">
+                    <a href="https://track.casadooleiroo.com.br/r/casadooleiro14" className="contato-footer-item">
                         <Icon name="mail" />
                         <span>casadooleiro14@gmail.com</span>
                     </a>    

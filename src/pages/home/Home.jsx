@@ -2,24 +2,17 @@ import Menu from "../../componentes/menu/Menu.jsx"
 import Cards from "../../componentes/cards/Cards.jsx"
 import Footer from "../../componentes/rodape/Footer.jsx"
 import { useEffect, useState } from "react"
-import { apiUrl } from "../../config/api.js"
+import {useProdutos} from "../../context/ProdutosContext.jsx"
+
 import './home.css'
 
 function Home(){
-
-    const [data, setData] = useState([])
+    const { data, loading, carregarProdutos } = useProdutos()
     const [categoriaSelecionada, setCategoriaSelecionada] = useState("todas")
 
     useEffect(() => {
-        async function fetchData(){
-            const response = await fetch(apiUrl('/produtos'))
-            const json = await response.json()
-            console.log("Produtos recebidos:", json)
-            setData(json)
-        }
-
-        fetchData()
-    },[])
+        carregarProdutos()
+    }, [])
 
     const categorias = [
         ...new Set(
@@ -29,12 +22,13 @@ function Home(){
         )
     ].sort((a, b) => a.localeCompare(b))
 
-    const produtosFiltrados =
+    const produtosFiltrados = (
         categoriaSelecionada === "todas"
             ? data
             : data.filter((produto) =>
                 produto.categorias?.includes(categoriaSelecionada)
             )
+    ).slice().sort((a, b) => (a.ordem ?? Infinity) - (b.ordem ?? Infinity))
 
     const abrirWhatsApp = () => {
         const url = `https://api.whatsapp.com/send/?phone=5541995264057&text=${encodeURIComponent("Olá! Gostaria de mais informações sobre os produtos.")}&type=phone_number&app_absent=0`
